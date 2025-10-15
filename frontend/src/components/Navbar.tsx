@@ -1,5 +1,5 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Briefcase, BookOpen, Users, LogIn, LogOut, User } from "lucide-react";
+import { Briefcase, BookOpen, Users, LogIn, LogOut, User, LayoutDashboard, Activity } from "lucide-react";
 import { Button } from "./ui/button";
 import logoImage from "@/assets/gar (1).png";
 import { useAuth } from "@/contexts/AuthContext";
@@ -37,6 +37,24 @@ export const Navbar = () => {
           {isAuthenticated && (
             <div className="hidden md:flex items-center gap-8">
               <Link 
+                to="/dashboard" 
+                className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/dashboard') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                <LayoutDashboard className="h-4 w-4" />
+                Dashboard
+              </Link>
+              <Link 
+                to="/feed" 
+                className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
+                  isActive('/feed') ? 'text-primary' : 'text-muted-foreground'
+                }`}
+              >
+                <Activity className="h-4 w-4" />
+                Feed
+              </Link>
+              <Link 
                 to="/jobs" 
                 className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
                   isActive('/jobs') ? 'text-primary' : 'text-muted-foreground'
@@ -55,13 +73,13 @@ export const Navbar = () => {
                 Skills
               </Link>
               <Link 
-                to="/community" 
+                to="/communities" 
                 className={`flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary ${
-                  isActive('/community') ? 'text-primary' : 'text-muted-foreground'
+                  isActive('/communities') || isActive('/community') ? 'text-primary' : 'text-muted-foreground'
                 }`}
               >
                 <Users className="h-4 w-4" />
-                Community
+                Communities
               </Link>
             </div>
           )}
@@ -112,6 +130,14 @@ export const Navbar = () => {
                     <User className="mr-2 h-4 w-4" />
                     <span>Profile</span>
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/dashboard")}>
+                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    <span>Dashboard</span>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => navigate("/feed")}>
+                    <Activity className="mr-2 h-4 w-4" />
+                    <span>Feed</span>
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={() => navigate("/jobs")}>
                     <Briefcase className="mr-2 h-4 w-4" />
                     <span>Jobs</span>
@@ -120,9 +146,9 @@ export const Navbar = () => {
                     <BookOpen className="mr-2 h-4 w-4" />
                     <span>Skills</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => navigate("/community")}>
+                  <DropdownMenuItem onClick={() => navigate("/communities")}>
                     <Users className="mr-2 h-4 w-4" />
-                    <span>Community</span>
+                    <span>Communities</span>
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem onClick={handleLogout}>

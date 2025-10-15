@@ -30,7 +30,7 @@ const Auth = () => {
   // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/jobs");
+      navigate("/dashboard");
     }
   }, [isAuthenticated, navigate]);
 
@@ -100,7 +100,7 @@ const Auth = () => {
 
       // Update auth context
       await login(email, password);
-      navigate("/jobs");
+      navigate("/dashboard");
     } catch (error) {
       console.error("Sign in error:", error);
       toast({
@@ -323,7 +323,7 @@ const Auth = () => {
                     </div>
                   </div>
 
-                  <Link to="/jobs">
+                  <Link to="/dashboard">
                     <Button 
                       type="button" 
                       variant="outline" 

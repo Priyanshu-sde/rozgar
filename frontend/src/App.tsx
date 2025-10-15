@@ -8,9 +8,13 @@ import { ProtectedRoute } from "@/components/ProtectedRoute";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import VerifyOTP from "./pages/VerifyOTP";
+import Dashboard from "./pages/Dashboard";
+import Feed from "./pages/Feed";
 import Jobs from "./pages/Jobs";
 import Skills from "./pages/Skills";
 import Community from "./pages/Community";
+import CommunityPage from "./pages/CommunityPage";
+import CommunitiesPage from "./pages/CommunitiesPage";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 
@@ -27,6 +31,22 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/verify-otp" element={<VerifyOTP />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/feed"
+              element={
+                <ProtectedRoute>
+                  <Feed />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/jobs"
               element={
@@ -48,6 +68,30 @@ const App = () => (
               element={
                 <ProtectedRoute>
                   <Community />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/community/:communityId"
+              element={
+                <ProtectedRoute>
+                  <CommunityPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/communities"
+              element={
+                <ProtectedRoute>
+                  <CommunitiesPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/communities/discover"
+              element={
+                <ProtectedRoute>
+                  <CommunitiesPage />
                 </ProtectedRoute>
               }
             />
